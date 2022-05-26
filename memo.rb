@@ -10,15 +10,18 @@ require "csv"
     puts "メモを入力"
     puts "入力後、Ctrl + D で保存"
     memo = STDIN.read
-　elsif memo_type == 2
+    
+    CSV.open("#{file_name}.csv", "w") do |csv|
+     csv << [memo]
+    end
+  elsif memo_type == 2
     puts "既存のメモを編集する"
     file_name = gets.chomp
     
     puts "入力後、Ctrl + D で保存"
     memo = STDIN.read
     
-    
-   CSV.open("#{file_name}.csv","w") do |csv|
-     csv.puts ["#{memo}"]
+   CSV.open("#{file_name}.csv","a") do |csv|
+     csv << [memo]
    end
   end
